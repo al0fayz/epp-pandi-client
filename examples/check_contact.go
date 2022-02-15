@@ -8,7 +8,11 @@ import (
 	"net"
 )
 
-func Login() {
+func CheckContact() {
+	contacts := []string{
+		"hello",
+		"ayam-goreng",
+	}
 	host := HOST
 	port := PORT
 	url := net.JoinHostPort(host, port)
@@ -32,11 +36,16 @@ func Login() {
 	}
 	username := USERNAME
 	password := PASSWORD
-	login, err := client.Login(username, password)
+	_, err = client.Login(username, password)
 	if err != nil {
 		fmt.Println(err)
 	}
-	//response login
-	fmt.Println(string(login))
+	//check contact
+	resCheck, err := client.CheckContact(contacts)
+	if err != nil {
+		fmt.Println(err)
+	}
+	//response check contact
+	fmt.Println(string(resCheck))
 	client.Conn.Close()
 }

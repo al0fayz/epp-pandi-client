@@ -2,22 +2,17 @@ package epp
 
 import (
 	"epp-pandi-client/types"
-	"fmt"
 )
 
-func (c *Client) CheckContact() ([]byte, error) {
+func (c *Client) CheckContact(contacts []string) ([]byte, error) {
 	contact := types.ContactCheckType{
-		types.ContactCheck{
-			Names: []string{
-				"hello",
-				"test",
-			},
+		Check: types.ContactCheck{
+			Names: contacts,
 		},
 	}
 	encoded, err := Encode(contact, ClientXMLAttributes())
 	if err != nil {
 		return nil, err
 	}
-	fmt.Println(string(encoded))
-	return nil, nil
+	return c.Send(encoded)
 }
