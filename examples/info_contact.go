@@ -1,44 +1,21 @@
 package examples
 
 import (
-	"crypto/tls"
-	"epp-pandi-client/epp"
+	"epp-pandi-client/frames"
 	"fmt"
-	"log"
-	"net"
 )
 
 func InfoContact() {
-	contact := "epp-598"
-	host := HOST
-	port := PORT
-	url := net.JoinHostPort(host, port)
-	//use certificate
-	certPath := CERTPATH
-	keyPath := KEYPATH
-	cert, err := tls.LoadX509KeyPair(certPath, keyPath)
-	if err != nil {
-		log.Fatal(err)
-	}
-	client := &epp.Client{
-		TLSConfig: &tls.Config{
-			InsecureSkipVerify: true,
-			Certificates:       []tls.Certificate{cert},
-		},
-	}
-	//connect to epp server
-	_, err = client.Connect(url)
-	if err != nil {
-		fmt.Println(err)
-	}
-	username := USERNAME
-	password := PASSWORD
-	_, err = client.Login(username, password)
+	contactId := "epp-598"
+	contact := frames.ContactInfoType{}
+	contact.SetContact(contactId)
+	// contact.SetAuthInfo("password")
+	client, err := Login()
 	if err != nil {
 		fmt.Println(err)
 	}
 	//check contact
-	resInfo, err := client.InfoContact(contact)
+	resInfo, err := client.InfoContact(&contact)
 	if err != nil {
 		fmt.Println(err)
 	}

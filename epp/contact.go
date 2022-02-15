@@ -1,30 +1,23 @@
 package epp
 
 import (
-	"epp-pandi-client/types"
+	"epp-pandi-client/frames"
 )
 
-func (c *Client) CheckContact(contacts []string) ([]byte, error) {
-	contact := types.ContactCheckType{
-		Check: types.ContactCheck{
-			Names: contacts,
-		},
-	}
+func (c *Client) CheckContact(contact *frames.ContactCheckType) ([]byte, error) {
 	encoded, err := Encode(contact, ClientXMLAttributes())
 	if err != nil {
 		return nil, err
 	}
 	return c.Send(encoded)
 }
-func (c *Client) InfoContact(name string) ([]byte, error) {
-	contact := types.ContactInfoType{
-		Info: types.ContactInfo{
-			Name: name,
-		},
-	}
+func (c *Client) InfoContact(contact *frames.ContactInfoType) ([]byte, error) {
 	encoded, err := Encode(contact, ClientXMLAttributes())
 	if err != nil {
 		return nil, err
 	}
 	return c.Send(encoded)
+}
+func CreateContact() ([]byte, error) {
+	return nil, nil
 }

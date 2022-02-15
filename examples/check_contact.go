@@ -1,11 +1,8 @@
 package examples
 
 import (
-	"crypto/tls"
-	"epp-pandi-client/epp"
+	"epp-pandi-client/frames"
 	"fmt"
-	"log"
-	"net"
 )
 
 func CheckContact() {
@@ -13,35 +10,14 @@ func CheckContact() {
 		"hello",
 		"ayam-goreng",
 	}
-	host := HOST
-	port := PORT
-	url := net.JoinHostPort(host, port)
-	//use certificate
-	certPath := CERTPATH
-	keyPath := KEYPATH
-	cert, err := tls.LoadX509KeyPair(certPath, keyPath)
-	if err != nil {
-		log.Fatal(err)
-	}
-	client := &epp.Client{
-		TLSConfig: &tls.Config{
-			InsecureSkipVerify: true,
-			Certificates:       []tls.Certificate{cert},
-		},
-	}
-	//connect to epp server
-	_, err = client.Connect(url)
-	if err != nil {
-		fmt.Println(err)
-	}
-	username := USERNAME
-	password := PASSWORD
-	_, err = client.Login(username, password)
+	contact := frames.ContactCheckType{}
+	contact.SetMultiContact(contacts)
+	client, err := Login()
 	if err != nil {
 		fmt.Println(err)
 	}
 	//check contact
-	resCheck, err := client.CheckContact(contacts)
+	resCheck, err := client.CheckContact(&contact)
 	if err != nil {
 		fmt.Println(err)
 	}

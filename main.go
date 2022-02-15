@@ -1,7 +1,10 @@
 package main
 
-import "epp-pandi-client/examples"
+import (
+	"epp-pandi-client/examples"
+)
 
 func main() {
-	examples.InfoHost()
+	examples.InfoContact()
+
 }
