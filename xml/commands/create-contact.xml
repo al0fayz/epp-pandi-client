@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+  <command>
+    <create>
+      <contact:create xmlns:contact="urn:ietf:params:xml:ns:contact-1.0">
+        <contact:id>example-1234</contact:id>
+        <contact:postalInfo type="loc">
+          <contact:name>Jane Doe</contact:name>
+          <contact:addr>
+            <contact:city>City</contact:city>
+            <contact:pc>12345</contact:pc>
+            <contact:cc>EN</contact:cc>
+          </contact:addr>
+        </contact:postalInfo>
+        <contact:voice>+41.12345689</contact:voice>
+        <contact:email>jane@example.se</contact:email>
+        <contact:authInfo>
+          <contact:pw>some-password</contact:pw>
+        </contact:authInfo>
+      </contact:create>
+    </create>
+    <extension>
+      <iis:create xmlns:iis="urn:se:iis:xml:epp:iis-1.2">
+        <iis:orgno>[SE]555555-1111</iis:orgno>
+      </iis:create>
+    </extension>
+    <clTRID>ABC-12345</clTRID>
+  </command>
+</epp>
