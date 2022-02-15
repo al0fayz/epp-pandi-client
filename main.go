@@ -5,6 +5,9 @@ import (
 )
 
 func main() {
-	examples.InfoContact()
+	// examples.CheckContact()
+	// examples.InfoContact()
+	// examples.CheckDomain()
+	examples.InfoDomain()
 
 }
