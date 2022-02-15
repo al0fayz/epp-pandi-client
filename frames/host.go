@@ -1,0 +1,29 @@
+package frames
+
+// HostCheckType represents a host check command.
+type HostCheckType struct {
+	Check HostCheck `xml:"urn:ietf:params:xml:ns:host-1.0 command>check>check"`
+}
+
+// HostCheck represents a host check request to the EPP server.
+type HostCheck struct {
+	Names []string `xml:"name"`
+}
+
+func (h *HostCheckType) SetMultiHost(hosts []string) {
+	h.Check.Names = hosts
+}
+
+// HostInfoType represents a host info command.
+type HostInfoType struct {
+	Info HostInfo `xml:"urn:ietf:params:xml:ns:host-1.0 command>info>info"`
+}
+
+// HostInfo represents a host info request to the EPP server.
+type HostInfo struct {
+	Name string `xml:"name"`
+}
+
+func (h *HostInfoType) SetHost(host string) {
+	h.Info.Name = host
+}

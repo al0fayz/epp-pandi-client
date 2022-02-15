@@ -1,11 +1,8 @@
 package examples
 
 import (
-	"crypto/tls"
-	"epp-pandi-client/epp"
+	"epp-pandi-client/frames"
 	"fmt"
-	"log"
-	"net"
 )
 
 func CheckHost() {
@@ -13,35 +10,14 @@ func CheckHost() {
 		"ns1.pandi.id",
 		"ns1.ayam.id",
 	}
-	host := HOST
-	port := PORT
-	url := net.JoinHostPort(host, port)
-	//use certificate
-	certPath := CERTPATH
-	keyPath := KEYPATH
-	cert, err := tls.LoadX509KeyPair(certPath, keyPath)
-	if err != nil {
-		log.Fatal(err)
-	}
-	client := &epp.Client{
-		TLSConfig: &tls.Config{
-			InsecureSkipVerify: true,
-			Certificates:       []tls.Certificate{cert},
-		},
-	}
-	//connect to epp server
-	_, err = client.Connect(url)
-	if err != nil {
-		fmt.Println(err)
-	}
-	username := USERNAME
-	password := PASSWORD
-	_, err = client.Login(username, password)
+	hostFrame := frames.HostCheckType{}
+	hostFrame.SetMultiHost(hosts)
+	client, err := Login()
 	if err != nil {
 		fmt.Println(err)
 	}
 	//check host
-	resCheck, err := client.CheckHost(hosts)
+	resCheck, err := client.CheckHost(&hostFrame)
 	if err != nil {
 		fmt.Println(err)
 	}

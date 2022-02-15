@@ -8,6 +8,8 @@ func main() {
 	// examples.CheckContact()
 	// examples.InfoContact()
 	// examples.CheckDomain()
-	examples.InfoDomain()
+	// examples.InfoDomain()
+	// examples.CheckHost()
+	examples.InfoHost()
 
 }
