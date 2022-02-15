@@ -18,3 +18,10 @@ func (c *Client) InfoHost(host *frames.HostInfoType) ([]byte, error) {
 	}
 	return c.Send(encode)
 }
+func (c *Client) CreateHost(host *frames.HostCreateType) ([]byte, error) {
+	encode, err := Encode(host, ClientXMLAttributes())
+	if err != nil {
+		return nil, err
+	}
+	return c.Send(encode)
+}
