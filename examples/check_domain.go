@@ -23,5 +23,6 @@ func CheckDomain() {
 	}
 	//response check domain
 	fmt.Println(string(resCheck))
+
 	client.Conn.Close() //close connection
 }

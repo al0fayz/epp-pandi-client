@@ -27,3 +27,17 @@ type HostInfo struct {
 func (h *HostInfoType) SetHost(host string) {
 	h.Info.Name = host
 }
+
+// HostDeleteType represents a host delete command.
+type HostDeleteType struct {
+	Delete HostDelete `xml:"urn:ietf:params:xml:ns:host-1.0 command>delete>delete"`
+}
+
+// HostDelete represents a host delete request to the EPP server.
+type HostDelete struct {
+	Name string `xml:"name"`
+}
+
+func (h *HostDeleteType) SetHost(host string) {
+	h.Delete.Name = host
+}

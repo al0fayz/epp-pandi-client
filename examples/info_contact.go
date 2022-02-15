@@ -21,5 +21,6 @@ func InfoContact() {
 	}
 	//response check contact
 	fmt.Println(string(resInfo))
-	client.Conn.Close()
+
+	client.Conn.Close() //close connection
 }

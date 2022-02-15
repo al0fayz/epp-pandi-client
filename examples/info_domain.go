@@ -20,5 +20,6 @@ func InfoDomain() {
 	}
 	//response info domain
 	fmt.Println(string(resInfo))
+
 	client.Conn.Close() //close connection
 }

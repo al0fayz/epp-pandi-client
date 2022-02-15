@@ -29,4 +29,6 @@ func CreateHost() {
 		fmt.Println(err)
 	}
 	fmt.Println(string(resCreate))
+
+	client.Conn.Close() //close connection
 }

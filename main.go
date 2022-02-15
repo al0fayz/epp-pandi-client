@@ -9,5 +9,7 @@ func main() {
 	// examples.InfoDomain()
 	// examples.CheckHost()
 	// examples.InfoHost()
-	examples.CreateHost()
+	// examples.CreateHost()
+	// examples.UpdateHost()
+	examples.DeleteHost()
 }

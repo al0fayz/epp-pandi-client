@@ -23,5 +23,6 @@ func CheckHost() {
 	}
 	//response check host
 	fmt.Println(string(resCheck))
+
 	client.Conn.Close() //close connection
 }
