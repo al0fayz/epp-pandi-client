@@ -82,6 +82,5 @@ func (c *Client) Login(username, password string) ([]byte, error) {
 	if err != nil {
 		return nil, err
 	}
-
 	return c.Send(encoded)
 }

@@ -22,4 +22,5 @@ func Greeting() {
 	}
 	//response greeting
 	fmt.Println(string(greeting))
+	defer client.Conn.Close()
 }
