@@ -10,6 +10,6 @@ func main() {
 	// examples.CheckHost()
 	// examples.InfoHost()
 	// examples.CreateHost()
-	// examples.UpdateHost()
-	examples.DeleteHost()
+	examples.UpdateHost()
+	// examples.DeleteHost()
 }

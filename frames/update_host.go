@@ -17,14 +17,49 @@ type HostUpdate struct {
 // domain.
 type HostAddRemove struct {
 	Address []HostAddress `xml:"addr,omitempty"`
+	Status  []HostStatus  `xml:"status,omitempty"`
 }
+
+// HostStatus represents statuses for a host.
+type HostStatus struct {
+	Status         string         `xml:",chardata"`
+	HostStatusType HostStatusType `xml:"s,attr"`
+	Language       string         `xml:"lang,attr"`
+}
+
+// HostStatusType represents available status values.
+type HostStatusType string
+
+// Constants representing the string value of status value types.
+const (
+	HostStatusClientDeleteProhibited HostStatusType = "clientDeleteProhibited"
+	HostStatusClientUpdateProhibited HostStatusType = "clientUpdateProhibited"
+	HostStatusLinked                 HostStatusType = "linked"
+	HostStatusOk                     HostStatusType = "ok"
+	HostStatusPendingCreate          HostStatusType = "pendingCreate"
+	HostStatusPendingDelete          HostStatusType = "pendingDelete"
+	HostStatusPendingTransfer        HostStatusType = "pendingTransfer"
+	HostStatusPendingUpdate          HostStatusType = "pendingUpdate"
+	HostStatusServerDeleteProhibited HostStatusType = "serverDeleteProhibited"
+	HostStatusServerUpdateProhibited HostStatusType = "serverUpdateProhibited"
+)
 
 func (h *HostUpdateType) SetHost(host string) {
 	h.Update.Name = host
 }
 func (h *HostUpdateType) AddAddr(host HostAddress) {
-	h.Update.Add.Address = append(h.Update.Add.Address, host)
+	HostAddRemove := HostAddRemove{}
+	HostAddRemove.Address = append(HostAddRemove.Address, host)
+	h.Update.Add = &HostAddRemove
 }
 func (h *HostUpdateType) RemoveAddr(host HostAddress) {
-	h.Update.Remove.Address = append(h.Update.Remove.Address, host)
+	HostAddRemove := HostAddRemove{}
+	HostAddRemove.Address = append(HostAddRemove.Address, host)
+	h.Update.Remove = &HostAddRemove
+}
+func (h *HostUpdateType) ChangeHost(host string) {
+	h.Update.Change = host
+}
+func (h *HostUpdateType) AddStatus() {
+
 }
