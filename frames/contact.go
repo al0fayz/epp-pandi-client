@@ -1,5 +1,9 @@
 package frames
 
+/**
+created by ahmad ropai <akhmadrofai@gmail.com>
+see https://datatracker.ietf.org/doc/html/rfc5733 for more detail
+*/
 // ContactCheckType represents a contact check command.
 type ContactCheckType struct {
 	Check ContactCheck `xml:"urn:ietf:params:xml:ns:contact-1.0 command>check>check"`
@@ -36,4 +40,18 @@ func (c *ContactInfoType) SetContact(contactId string) {
 }
 func (c *ContactInfoType) SetAuthInfo(password string) {
 	c.Info.AuthInfo.Password = password
+}
+
+// ContactDeleteType represents a contact delete command.
+type ContactDeleteType struct {
+	Delete ContactDelete `xml:"urn:ietf:params:xml:ns:contact-1.0 command>delete>delete"`
+}
+
+// ContactDelete represents a contact delete command.
+type ContactDelete struct {
+	Name string `xml:"id"`
+}
+
+func (c *ContactDeleteType) SetContactId(id string) {
+	c.Delete.Name = id
 }

@@ -1,5 +1,9 @@
 package frames
 
+/**
+created by ahmad ropai <akhmadrofai@gmail.com>
+see https://datatracker.ietf.org/doc/html/rfc5731 for more detail
+*/
 // DomainCheckType implements extension for check from domain-1.0.
 type DomainCheckType struct {
 	Check DomainCheck `xml:"urn:ietf:params:xml:ns:domain-1.0 command>check>check"`

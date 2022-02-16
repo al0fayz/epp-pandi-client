@@ -1,5 +1,6 @@
 ```
 Notes:
-- contact info (auth)
+- contact update
+- contact transfer
 
 ```

@@ -1,5 +1,9 @@
 package frames
 
+/**
+created by ahmad ropai <akhmadrofai@gmail.com>
+see https://datatracker.ietf.org/doc/html/rfc5732 for more detail
+*/
 // HostCheckType represents a host check command.
 type HostCheckType struct {
 	Check HostCheck `xml:"urn:ietf:params:xml:ns:host-1.0 command>check>check"`

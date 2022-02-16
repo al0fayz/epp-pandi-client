@@ -1,5 +1,9 @@
 package frames
 
+/**
+Created by ahmad ropai <akhmadrofai@gmail.com>
+see https://datatracker.ietf.org/doc/html/rfc5732#section-3.2.1 for more detail
+*/
 // HostCreateType represents a host create command.
 type HostCreateType struct {
 	Create HostCreate `xml:"urn:ietf:params:xml:ns:host-1.0 command>create>create"`

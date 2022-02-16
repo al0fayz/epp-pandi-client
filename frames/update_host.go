@@ -1,5 +1,9 @@
 package frames
 
+/**
+Created by ahmad ropai <akhmadrofai@gmail.com>
+see https://datatracker.ietf.org/doc/html/rfc5732#section-3.2.5 for more detail
+*/
 // HostUpdateType represents a host update command.
 type HostUpdateType struct {
 	Update HostUpdate `xml:"urn:ietf:params:xml:ns:host-1.0 command>update>update"`
