@@ -1,15 +1,17 @@
 package main
 
-import "epp-pandi-client/examples"
-
 func main() {
 	// examples.CheckContact()
 	// examples.InfoContact()
 	// examples.CheckDomain()
 	// examples.InfoDomain()
+
+	/**
+	-> Host
+	*/
 	// examples.CheckHost()
 	// examples.InfoHost()
 	// examples.CreateHost()
-	examples.UpdateHost()
+	// examples.UpdateHost()
 	// examples.DeleteHost()
 }

@@ -2,7 +2,6 @@ package epp
 
 import (
 	"epp-pandi-client/frames"
-	"fmt"
 )
 
 //check
@@ -33,9 +32,12 @@ func (c *Client) CreateHost(host *frames.HostCreateType) ([]byte, error) {
 }
 
 //update
-func UpdateHost(host *frames.HostUpdateType) {
+func (c *Client) UpdateHost(host *frames.HostUpdateType) ([]byte, error) {
 	encode, err := Encode(host, ClientXMLAttributes())
-	fmt.Println(string(encode), err)
+	if err != nil {
+		return nil, err
+	}
+	return c.Send(encode)
 }
 
 //delete

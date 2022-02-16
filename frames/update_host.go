@@ -24,7 +24,7 @@ type HostAddRemove struct {
 type HostStatus struct {
 	Status         string         `xml:",chardata"`
 	HostStatusType HostStatusType `xml:"s,attr"`
-	Language       string         `xml:"lang,attr"`
+	Language       string         `xml:"lang,attr,omitempty"`
 }
 
 // HostStatusType represents available status values.
@@ -44,22 +44,41 @@ const (
 	HostStatusServerUpdateProhibited HostStatusType = "serverUpdateProhibited"
 )
 
+//make global variabel for make blue print of HostAddRemove
+var AddHostAddRemove HostAddRemove    //for add
+var RemoveHostAddRemove HostAddRemove //for remove
+
 func (h *HostUpdateType) SetHost(host string) {
 	h.Update.Name = host
 }
 func (h *HostUpdateType) AddAddr(host HostAddress) {
-	HostAddRemove := HostAddRemove{}
+	//copy blue print AddHostAddRemove
+	var HostAddRemove *HostAddRemove = &AddHostAddRemove
 	HostAddRemove.Address = append(HostAddRemove.Address, host)
-	h.Update.Add = &HostAddRemove
+	h.Update.Add = HostAddRemove
 }
 func (h *HostUpdateType) RemoveAddr(host HostAddress) {
-	HostAddRemove := HostAddRemove{}
+	//copy blue print RemoveHostAddRemove
+	var HostAddRemove *HostAddRemove = &RemoveHostAddRemove
 	HostAddRemove.Address = append(HostAddRemove.Address, host)
-	h.Update.Remove = &HostAddRemove
+	h.Update.Remove = HostAddRemove
 }
 func (h *HostUpdateType) ChangeHost(host string) {
 	h.Update.Change = host
 }
-func (h *HostUpdateType) AddStatus() {
 
+//add status host
+func (h *HostUpdateType) AddStatus(status HostStatus) {
+	//copy blue print AddHostAddRemove
+	var HostAddRemove *HostAddRemove = &AddHostAddRemove
+	HostAddRemove.Status = append(HostAddRemove.Status, status)
+	h.Update.Add = HostAddRemove
+}
+
+//remove status host
+func (h *HostUpdateType) RemoveStatus(status HostStatus) {
+	//copy blue print RemoveHostAddRemove
+	var HostAddRemove *HostAddRemove = &RemoveHostAddRemove
+	HostAddRemove.Status = append(HostAddRemove.Status, status)
+	h.Update.Remove = HostAddRemove
 }
