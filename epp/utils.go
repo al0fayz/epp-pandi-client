@@ -191,10 +191,19 @@ func addNameSpaceAlias(document *xmltree.Element, nsAdded bool) *xmltree.Element
 	return document
 }
 
-func Decode(data []byte) (v interface{}, err error) {
-	err = xml.Unmarshal(data, &v)
+func Decode(data []byte) (interface{}, error) {
+	response, err := xmltree.Parse(data)
 	if err != nil {
 		return nil, err
 	}
-	return v, nil
+	responseData := frames.Response{}
+	//response
+	for _, el := range response.Search("", "response") {
+		fmt.Println(el)
+		if err := xmltree.Unmarshal(el, &responseData); err != nil {
+			fmt.Println(err)
+			continue
+		}
+	}
+	return responseData, nil
 }
