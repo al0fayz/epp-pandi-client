@@ -38,7 +38,6 @@ func ExampleLogin() {
 	}
 	//response login
 	fmt.Println(string(login))
-	client.Conn.Close()
 }
 func Login() (*epp.Client, error) {
 	host := HOST

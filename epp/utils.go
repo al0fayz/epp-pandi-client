@@ -3,7 +3,7 @@ package epp
 import (
 	"encoding/binary"
 	"encoding/xml"
-	"epp-pandi-client/types"
+	"epp-pandi-client/frames"
 	"errors"
 	"fmt"
 	"io"
@@ -113,7 +113,7 @@ func ClientXMLAttributes() []xml.Attr {
 				Space: "",
 				Local: "xmlns",
 			},
-			Value: types.NameSpaceEPP10,
+			Value: frames.NameSpaceEPP10,
 		},
 	}
 }
@@ -158,12 +158,12 @@ func Encode(data interface{}, xmlAttributes []xml.Attr) ([]byte, error) {
 // to all child nodes. The alias will only be setup for the root element.
 func addNameSpaceAlias(document *xmltree.Element, nsAdded bool) *xmltree.Element {
 	namespaceAliases := map[string]string{
-		types.NameSpaceDomain:   "domain",
-		types.NameSpaceHost:     "host",
-		types.NameSpaceContact:  "contact",
-		types.NameSpaceDNSSEC10: "sed",
-		types.NameSpaceDNSSEC11: "sec",
-		types.NameSpaceIIS12:    "iis",
+		frames.NameSpaceDomain:   "domain",
+		frames.NameSpaceHost:     "host",
+		frames.NameSpaceContact:  "contact",
+		frames.NameSpaceDNSSEC10: "sed",
+		frames.NameSpaceDNSSEC11: "sec",
+		frames.NameSpaceIIS12:    "iis",
 	}
 
 	if document.Name.Space != "" {

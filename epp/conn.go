@@ -3,7 +3,8 @@ package epp
 import (
 	"context"
 	"crypto/tls"
-	"epp-pandi-client/types"
+	"epp-pandi-client/frames"
+	"fmt"
 	"net"
 	"time"
 )
@@ -56,20 +57,20 @@ func (c *Client) Send(data []byte) ([]byte, error) {
 
 // Login will perform a login to an EPP server.
 func (c *Client) Login(username, password string) ([]byte, error) {
-	login := types.Login{
+	login := frames.Login{
 		ClientID: username,
 		Password: password,
-		Options: types.LoginOptions{
+		Options: frames.LoginOptions{
 			Version:  "1.0",
 			Language: "en",
 		},
-		Services: types.LoginServices{
+		Services: frames.LoginServices{
 			ObjectURI: []string{
 				"urn:ietf:params:xml:ns:domain-1.0",
 				"urn:ietf:params:xml:ns:contact-1.0",
 				"urn:ietf:params:xml:ns:host-1.0",
 			},
-			ServiceExtension: types.LoginServiceExtension{
+			ServiceExtension: frames.LoginServiceExtension{
 				ExtensionURI: []string{
 					"urn:ietf:params:xml:ns:secDNS-1.0",
 					"urn:ietf:params:xml:ns:secDNS-1.1",
@@ -82,5 +83,17 @@ func (c *Client) Login(username, password string) ([]byte, error) {
 	if err != nil {
 		return nil, err
 	}
+	fmt.Println(string(encoded))
 	return c.Send(encoded)
+}
+func Logout(username string) ([]byte, error) {
+	logout := frames.Logout{
+		ClientID: username,
+	}
+	encoded, err := Encode(logout, ClientXMLAttributes())
+	if err != nil {
+		return nil, err
+	}
+	fmt.Println(string(encoded))
+	return nil, nil
 }

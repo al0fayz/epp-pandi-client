@@ -3,6 +3,7 @@ package main
 import "epp-pandi-client/examples"
 
 func main() {
+	examples.ExampleLogin()
 	/**
 	-> Contact
 	*/
@@ -17,7 +18,7 @@ func main() {
 	// examples.CheckDomain()
 	// examples.InfoDomain()
 	// examples.CreateDomain()
-	examples.UpdateDomain()
+	// examples.UpdateDomain()
 	// examples.RenewDomain()
 	// examples.DeleteDomain()
 	/**
