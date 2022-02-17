@@ -9,6 +9,4 @@ func UpdateDomain() {
 	domainFrame := frames.DomainUpdateType{}
 	domainFrame.SetDomain("bejak.id")
 	epp.UpdateDomain(&domainFrame)
-
-	epp.Logout("hello")
 }

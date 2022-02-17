@@ -83,17 +83,14 @@ func (c *Client) Login(username, password string) ([]byte, error) {
 	if err != nil {
 		return nil, err
 	}
-	fmt.Println(string(encoded))
 	return c.Send(encoded)
 }
-func Logout(username string) ([]byte, error) {
-	logout := frames.Logout{
-		ClientID: username,
-	}
+func (c *Client) Logout() ([]byte, error) {
+	logout := frames.Logout{}
 	encoded, err := Encode(logout, ClientXMLAttributes())
 	if err != nil {
 		return nil, err
 	}
 	fmt.Println(string(encoded))
-	return nil, nil
+	return c.Send(encoded)
 }

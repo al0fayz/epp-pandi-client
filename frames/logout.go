@@ -1,5 +1,8 @@
 package frames
 
 type Logout struct {
-	ClientID string `xml:"command>logout>clID,omitempty"`
+	Logout  ClTRID `xml:"command>logout>clTRID,omitempty"`
+}
+type ClTRID struct {
+	Value string `xml:"clTRID,omitempty"`
 }
