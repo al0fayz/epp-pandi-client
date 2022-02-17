@@ -1,0 +1,78 @@
+<!-- see https://datatracker.ietf.org/doc/html/rfc5730#section-2.6 for more detail -->
+
+<!-- Example response without <value> or <resData>: -->
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+    <response>
+    <result code="1000">
+        <msg lang="en">Command completed successfully</msg>
+    </result>
+    <trID>
+        <clTRID>ABC-12345</clTRID>
+        <svTRID>54321-XYZ</svTRID>
+    </trID>
+    </response>
+</epp>
+
+<!-- Example response with <resData>: -->
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+  <response>
+    <result code="1000">
+      <msg>Command completed successfully</msg>
+    </result>
+    <resData>
+      <obj:creData xmlns:obj="urn:ietf:params:xml:ns:obj">
+        <obj:name>example</obj:name>
+      </obj:creData>
+    </resData>
+    <trID>
+      <clTRID>ABC-12345</clTRID>
+      <svTRID>54321-XYZ</svTRID>
+    </trID>
+  </response>
+</epp>
+
+<!-- Example response with error value elements: -->
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+    <response>
+    <result code="2004">
+        <msg>Parameter value range error</msg>
+        <value xmlns:obj="urn:ietf:params:xml:ns:obj">
+        <obj:elem1>2525</obj:elem1>
+        </value>
+    </result>
+    <result code="2005">
+        <msg>Parameter value syntax error</msg>
+        <value xmlns:obj="urn:ietf:params:xml:ns:obj">
+        <obj:elem2>example</obj:elem2>
+        </value>
+        <extValue>
+        <value xmlns:obj="urn:ietf:params:xml:ns:obj">
+            <obj:elem3>abc.example</obj:elem3>
+        </value>
+        <reason>Invalid character found.</reason>
+        </extValue>
+    </result>
+    <trID>
+        <clTRID>ABC-12345</clTRID>
+        <svTRID>54321-XYZ</svTRID>
+    </trID>
+    </response>
+</epp>
+
+<!-- Example response with notice of waiting server messages: -->
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+  <response>
+    <result code="1000">
+      <msg>Command completed successfully</msg>
+    </result>
+    <msgQ count="5" id="12345"/>
+    <trID>
+      <clTRID>ABC-12345</clTRID>
+      <svTRID>54321-XYZ</svTRID>
+    </trID>
+  </response>
+</epp>
