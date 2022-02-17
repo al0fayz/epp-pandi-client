@@ -16,11 +16,17 @@ func TestDecode(t *testing.T) {
 			</result><trID><svTRID>20806895-826a-44e0-8491-46b2185b86e2</svTRID><clTRID>null</clTRID></trID>
 			</response>
 		</epp>`)
-	root, err := xmltree.Parse(response)
+	Decode(response)
+}
+func Decode(data []byte) {
+	// response := frames.Response{}
+	root, err := xmltree.Parse(data)
 	if err != nil {
-		t.Error(err)
+		fmt.Println(err)
 	}
 	for _, el := range root.Search("", "response") {
-		fmt.Println(el)
+		for _, res := range el.Search("", "result") {
+			fmt.Println(res)
+		}
 	}
 }
