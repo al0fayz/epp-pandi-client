@@ -191,19 +191,53 @@ func addNameSpaceAlias(document *xmltree.Element, nsAdded bool) *xmltree.Element
 	return document
 }
 
-func Decode(data []byte) (interface{}, error) {
-	response, err := xmltree.Parse(data)
+func Decode(data []byte) (*frames.Response, error) {
+	response := frames.Response{}
+	root, err := xmltree.Parse(data)
 	if err != nil {
 		return nil, err
 	}
-	responseData := frames.Response{}
-	//response
-	for _, el := range response.Search("", "response") {
-		fmt.Println(el)
-		if err := xmltree.Unmarshal(el, &responseData); err != nil {
-			fmt.Println(err)
-			continue
+	for _, el := range root.Search("", "response") {
+		//result
+		Result := frames.Result{}
+		for _, res := range el.Search("", "result") {
+			if err := xmltree.Unmarshal(res, &Result); err != nil {
+				continue
+			}
+			response.Result = append(response.Result, Result)
 		}
+		//message queue
+		MessageQueue := frames.MessageQueue{}
+		for _, msgQ := range el.Search("", "msgQ") {
+			if err := xmltree.Unmarshal(msgQ, &MessageQueue); err != nil {
+				continue
+			}
+		}
+		response.MessageQ = &MessageQueue
+		//result data
+		var ResultData interface{}
+		for _, resData := range el.Search("", "resData") {
+			if err := xmltree.Unmarshal(resData, &ResultData); err != nil {
+				continue
+			}
+		}
+		response.ResultData = ResultData
+		//extension
+		var Extension interface{}
+		for _, extension := range el.Search("", "extension") {
+			if err := xmltree.Unmarshal(extension, &Extension); err != nil {
+				continue
+			}
+		}
+		response.Extension = Extension
+		//transaction identifier
+		TransactionID := frames.TransactionID{}
+		for _, trID := range el.Search("", "trID") {
+			if err := xmltree.Unmarshal(trID, &TransactionID); err != nil {
+				continue
+			}
+		}
+		response.TransactionID = TransactionID
 	}
-	return responseData, nil
+	return &response, nil
 }
