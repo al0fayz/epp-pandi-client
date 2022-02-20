@@ -1,4 +1,4 @@
-package main
+package test
 
 import (
 	"epp-pandi-client/epp"

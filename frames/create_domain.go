@@ -77,3 +77,5 @@ func (d *DomainCreateType) AddHostObject(host HostAttribute) {
 	NameServer.HostAttribute = append(NameServer.HostAttribute, host)
 	d.Create.NameServer = *NameServer
 }
+
+//add dnsecc
