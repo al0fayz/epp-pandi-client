@@ -1,11 +1,8 @@
 package test
 
 import (
-	"encoding/json"
 	"encoding/xml"
-	"epp-pandi-client/epp"
 	"epp-pandi-client/frames"
-	"fmt"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -67,7 +64,7 @@ func TestContactCheck(t *testing.T) {
 
 }
 func TestContactInfo(t *testing.T) {
-	xml := []byte(`<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+	res_xml := []byte(`<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 	<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
 	  <response>
 	    <result code="1000">
@@ -116,18 +113,37 @@ func TestContactInfo(t *testing.T) {
        </trID>
      </response>
    </epp>`)
-	response, err := epp.ResponseInfoContact(xml)
+	response := frames.Response{
+		ResultData: &frames.ContactInfoDataType{},
+	}
+	err := xml.Unmarshal(res_xml, &response)
 	if err != nil {
 		t.Error(err)
 	}
-	json, err := json.MarshalIndent(response, "", "  ")
-	if err != nil {
-		t.Error(err)
-	}
-	t.Log(string(json))
+	assert.Equal(t, 1000, response.Result[0].Code)
+	assert.Equal(t, "Command completed successfully", response.Result[0].Message)
+	infoData := response.ResultData.(*frames.ContactInfoDataType).InfoData
+	assert.Equal(t, "sh8013", infoData.Name)
+	assert.Equal(t, "SH8013-REP", infoData.ROID)
+	assert.Equal(t, frames.ContactStatusLinked, infoData.Status[0].ContactStatusType)
+	assert.Equal(t, frames.ContactStatusClientDeleteProhibited, infoData.Status[1].ContactStatusType)
+	//postal info
+	assert.Equal(t, "John Doe", infoData.PostalInfo[0].Name)
+	assert.Equal(t, "Example Inc.", infoData.PostalInfo[0].Organization)
+	//address
+	assert.Equal(t, "Dulles", infoData.PostalInfo[0].Address.City)
+	assert.Equal(t, "US", infoData.PostalInfo[0].Address.CountryCode)
+	assert.Equal(t, "20166-6503", infoData.PostalInfo[0].Address.PostalCode)
+	assert.Equal(t, "VA", infoData.PostalInfo[0].Address.StateProvince)
+
+	assert.Equal(t, "+1.7035555555", infoData.Voice.Value)
+	assert.Equal(t, "+1.7035555556", infoData.Fax.Value)
+	assert.Equal(t, "jdoe@example.com", infoData.Email)
+	assert.Equal(t, "2fooBAR", infoData.AuthInfo.Password)
+
 }
 func TestContactTransfer(t *testing.T) {
-	xml := []byte(`<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+	res_xml := []byte(`<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 	<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
 	  <response>
 	    <result code="1000">
@@ -149,10 +165,24 @@ func TestContactTransfer(t *testing.T) {
 	    </trID>
 	  </response>
 	</epp>`)
-	fmt.Println(xml)
+	response := frames.Response{
+		ResultData: &frames.ContactTransferDataType{},
+	}
+	err := xml.Unmarshal(res_xml, &response)
+	if err != nil {
+		t.Error(err)
+	}
+	assert.Equal(t, 1000, response.Result[0].Code)
+	assert.Equal(t, "Command completed successfully", response.Result[0].Message)
+	transferData := response.ResultData.(*frames.ContactTransferDataType).TransferData
+	assert.Equal(t, "sh8013", transferData.Name)
+	assert.Equal(t, "ClientX", transferData.RequestingID)
+	assert.Equal(t, "ClientY", transferData.ActingID)
+	assert.Equal(t, frames.ContactTransferPending, transferData.TransferStatus)
+
 }
 func TestContactCreate(t *testing.T) {
-	xml := []byte(`<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+	res_xml := []byte(`<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 	<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
 	  <response>
 	    <result code="1000">
@@ -171,10 +201,21 @@ func TestContactCreate(t *testing.T) {
        </trID>
      </response>
    </epp>`)
-	fmt.Println(xml)
+	response := frames.Response{
+		ResultData: &frames.ContactCreateDataType{},
+	}
+	err := xml.Unmarshal(res_xml, &response)
+	if err != nil {
+		t.Error(err)
+	}
+	assert.Equal(t, 1000, response.Result[0].Code)
+	assert.Equal(t, "Command completed successfully", response.Result[0].Message)
+	createData := response.ResultData.(*frames.ContactCreateDataType).CreateData
+	assert.Equal(t, "sh8013", createData.Name)
+
 }
 func TestContactDelete(t *testing.T) {
-	xml := []byte(`<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+	res_xml := []byte(`<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 	<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
 	  <response>
 	    <result code="1000">
@@ -186,10 +227,16 @@ func TestContactDelete(t *testing.T) {
 	    </trID>
 	  </response>
 	</epp>`)
-	fmt.Println(xml)
+	response := frames.Response{}
+	err := xml.Unmarshal(res_xml, &response)
+	if err != nil {
+		t.Error(err)
+	}
+	assert.Equal(t, 1000, response.Result[0].Code)
+	assert.Equal(t, "Command completed successfully", response.Result[0].Message)
 }
 func TestContactUpdate(t *testing.T) {
-	xml := []byte(`<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+	res_xml := []byte(`<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 	<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
 	  <response>
 	    <result code="1000">
@@ -201,5 +248,11 @@ func TestContactUpdate(t *testing.T) {
        </trID>
      </response>
    </epp>`)
-	fmt.Println(xml)
+	response := frames.Response{}
+	err := xml.Unmarshal(res_xml, &response)
+	if err != nil {
+		t.Error(err)
+	}
+	assert.Equal(t, 1000, response.Result[0].Code)
+	assert.Equal(t, "Command completed successfully", response.Result[0].Message)
 }

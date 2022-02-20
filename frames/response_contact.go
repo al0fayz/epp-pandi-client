@@ -61,3 +61,35 @@ type ContactInfoData struct {
 	AuthInfo     AuthInfo        `xml:"authInfo,omitempty"`
 	Disclose     Disclose        `xml:"disclose,omitempty"`
 }
+
+/**
+response transfer contact
+*/
+// ContactTransferStatusType represents available transaction statuses.
+type ContactTransferStatusType string
+
+// Constants representing the string value of transaction status types.
+const (
+	ContactTransferClientApproved  ContactTransferStatusType = "clientApproved"
+	ContactTransferClientCancelled ContactTransferStatusType = "clientCancelled"
+	ContactTransferClientRejected  ContactTransferStatusType = "clientRejected"
+	ContactTransferPending         ContactTransferStatusType = "pending"
+	ContactTransferServerApproved  ContactTransferStatusType = "serverApproved"
+	ContactTransferServerCancelled ContactTransferStatusType = "serverCancelled"
+)
+
+// ContactTransferDataType represents contact transfer data.
+type ContactTransferDataType struct {
+	TransferData ContactTransferData `xml:"urn:ietf:params:xml:ns:contact-1.0 trnData"`
+}
+
+// ContactTransferData represents the data returned from a contact transfer
+// cmomand.
+type ContactTransferData struct {
+	Name           string                    `xml:"id"`
+	TransferStatus ContactTransferStatusType `xml:"trStatus"`
+	RequestingID   string                    `xml:"reID"`
+	RequestingDate time.Time                 `xml:"reDate"`
+	ActingID       string                    `xml:"acID"`
+	ActingDate     time.Time                 `xml:"acDate"`
+}
