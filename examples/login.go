@@ -38,8 +38,7 @@ func ExampleLogin() {
 	}
 	//response login
 	fmt.Println(string(login))
-	v, err := epp.Decode(login)
-	fmt.Println(v, err)
+
 	//logout
 	logout, err := client.Logout()
 	if err != nil {

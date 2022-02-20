@@ -1,7 +1,6 @@
 package epp
 
 import (
-	"encoding/xml"
 	"epp-pandi-client/frames"
 )
 
@@ -41,14 +40,4 @@ func (c *Client) DeleteContact(contact *frames.ContactDeleteType) ([]byte, error
 		return nil, err
 	}
 	return c.Send(encode)
-}
-
-func ResponseInfoContact(data []byte) (*frames.Response, error) {
-	response := frames.Response{}
-	response.ResultData = &frames.ContactInfoDataType{}
-	err := xml.Unmarshal(data, &response)
-	if err != nil {
-		return nil, err
-	}
-	return &response, nil
 }
