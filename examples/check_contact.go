@@ -1,6 +1,7 @@
 package examples
 
 import (
+	"encoding/xml"
 	"epp-pandi-client/frames"
 	"fmt"
 )
@@ -22,7 +23,24 @@ func CheckContact() {
 		fmt.Println(err)
 	}
 	//response check contact
-	fmt.Println(string(resCheck))
+	//print xml
+	// fmt.Println(string(resCheck))
 
+	response := frames.Response{
+		ResultData: &frames.ContactCheckDataType{},
+	}
+	if err := xml.Unmarshal(resCheck, &response); err != nil {
+		fmt.Println(err)
+	}
+	//print object response
+	// fmt.Println(response)
+	fmt.Println("code is ", response.Result[0].Code)
+	fmt.Println("Message", response.Result[0].Message)
+	//result contact check
+	contactData := response.ResultData.(*frames.ContactCheckDataType).CheckData.Name
+	for _, contact := range contactData {
+		fmt.Println("Contact Id", contact.Name.Value)
+		fmt.Println("Availlable", contact.Name.Available)
+	}
 	client.Conn.Close() //close connection
 }

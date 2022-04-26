@@ -9,7 +9,7 @@ func main() {
 	*/
 	// examples.CheckContact()
 	// examples.InfoContact()
-	// examples.CreateContact()
+	examples.CreateContact()
 	// examples.UpdateContact()
 	// examples.DeleteContact()
 	/**
@@ -17,7 +17,7 @@ func main() {
 	*/
 	// examples.CheckDomain()
 	// examples.InfoDomain()
-	examples.CreateDomain()
+	// examples.CreateDomain()
 	// examples.UpdateDomain()
 	// examples.RenewDomain()
 	// examples.DeleteDomain()
