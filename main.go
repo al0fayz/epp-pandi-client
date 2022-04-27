@@ -16,7 +16,7 @@ func main() {
 	-> Domain
 	*/
 	// examples.CheckDomain()
-	// examples.InfoDomain()
+	examples.InfoDomain()
 	// examples.CreateDomain()
 	// examples.UpdateDomain()
 	// examples.RenewDomain()
@@ -28,5 +28,5 @@ func main() {
 	// examples.InfoHost()
 	// examples.CreateHost()
 	// examples.UpdateHost()
-	examples.DeleteHost()
+	// examples.DeleteHost()
 }
