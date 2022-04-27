@@ -1,13 +1,14 @@
 package examples
 
 import (
+	"encoding/xml"
 	"epp-pandi-client/frames"
 	"fmt"
 )
 
 func UpdateHost() {
 	hostFrame := frames.HostUpdateType{}
-	hostFrame.SetHost("ns1.bejak.id")
+	hostFrame.SetHost("ns4.bejak.id")
 	//add address
 	addAddr := frames.HostAddress{
 		Address: "127.0.0.1",
@@ -33,7 +34,7 @@ func UpdateHost() {
 	}
 	hostFrame.RemoveStatus(removeStatus)
 
-	hostFrame.ChangeHost("sn1.bejak.id")
+	hostFrame.ChangeHost("ns1.bejak.id")
 	//login
 	client, err := Login()
 	if err != nil {
@@ -45,7 +46,14 @@ func UpdateHost() {
 		fmt.Println(err)
 	}
 	//response update
+	//print xml
 	fmt.Println(string(resUpdate))
+	response := frames.Response{}
+	if err := xml.Unmarshal(resUpdate, &response); err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println("code is ", response.Result[0].Code)
+	fmt.Println("Message", response.Result[0].Message)
 
 	//close connection
 	client.Conn.Close()

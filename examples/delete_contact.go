@@ -1,13 +1,14 @@
 package examples
 
 import (
+	"encoding/xml"
 	"epp-pandi-client/frames"
 	"fmt"
 )
 
 func DeleteContact() {
 	contactFrame := frames.ContactDeleteType{}
-	contactFrame.SetContactId("hello123")
+	contactFrame.SetContactId("hello123s")
 	//login
 	client, err := Login()
 	if err != nil {
@@ -19,7 +20,16 @@ func DeleteContact() {
 		fmt.Println(err)
 	}
 	//response delete
-	fmt.Println(string(resDelete))
+	//print xml
+	// fmt.Println(string(resDelete))
+
+	response := frames.Response{}
+	if err := xml.Unmarshal(resDelete, &response); err != nil {
+		fmt.Println(err)
+	}
+	//print
+	fmt.Println("code is", response.Result[0].Code)
+	fmt.Println("Message ", response.Result[0].Message)
 
 	//close connection
 	client.Conn.Close()
