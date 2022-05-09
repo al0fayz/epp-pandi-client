@@ -32,6 +32,13 @@ func (c *Client) CreateContact(contact *frames.ContactCreateType) ([]byte, error
 }
 
 //update
+func (c *Client) UpdateContact(contact *frames.ContactUpdateType) ([]byte, error) {
+	encode, err := Encode(contact, ClientXMLAttributes())
+	if err != nil {
+		return nil, err
+	}
+	return c.Send(encode)
+}
 
 ///delete
 func (c *Client) DeleteContact(contact *frames.ContactDeleteType) ([]byte, error) {

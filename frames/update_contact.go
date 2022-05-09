@@ -25,7 +25,7 @@ const (
 
 // ContactUpdateType represents a contact update command.
 type ContactUpdateType struct {
-	Update ContactUpdate `xml:"urn:ietf:params:xml:ns:contact-1.0 command>transfer>transfer"`
+	Update ContactUpdate `xml:"urn:ietf:params:xml:ns:contact-1.0 command>update>update"`
 }
 
 // ContactUpdate represents a contact update command.
@@ -58,4 +58,65 @@ type ContactChange struct {
 	Email      string       `xml:"email,omitempty"`
 	AuthInfo   AuthInfo     `xml:"authInfo,omitempty"`
 	Disclose   Disclose     `xml:"disclose,omitempty"`
+}
+
+//update
+func (c *ContactUpdateType) SetContactId(id string) {
+	c.Update.Name = id
+}
+
+//change data
+var ChangeData ContactChange
+
+func (c *ContactUpdateType) ChangeAuthInfo(password string) {
+	var Change *ContactChange = &ChangeData
+	Change.AuthInfo.Password = password
+	c.Update.Change = Change
+}
+func (c *ContactUpdateType) ChangeEmail(email string) {
+	var Change *ContactChange = &ChangeData
+	Change.Email = email
+	c.Update.Change = Change
+}
+func (c *ContactUpdateType) ChangeVoice(voice E164Type) {
+	var Change *ContactChange = &ChangeData
+	Change.Voice = voice
+	c.Update.Change = Change
+}
+func (c *ContactUpdateType) ChangeFax(fax E164Type) {
+	var Change *ContactChange = &ChangeData
+	Change.Fax = fax
+	c.Update.Change = Change
+}
+
+//update postal info
+func (c *ContactUpdateType) ChangePostalInfo(postal PostalInfo) {
+	var Change *ContactChange = &ChangeData
+	Change.PostalInfo = append(c.Update.Change.PostalInfo, postal)
+	c.Update.Change = Change
+}
+
+//add disclose
+func (c *ContactUpdateType) ChangeDisclose(disclose Disclose) {
+	var Change *ContactChange = &ChangeData
+	Change.Disclose = disclose
+	c.Update.Change = Change
+}
+
+//end change data
+
+//add or remove status contact
+var AddStatusContact ContactAddRemove
+var RemoveStatusContact ContactAddRemove
+
+func (c *ContactUpdateType) AddStatus(status ContactStatus) {
+	var StatusContact *ContactAddRemove = &AddStatusContact
+	StatusContact.Status = append(StatusContact.Status, status)
+	c.Update.Add = StatusContact
+}
+
+func (c *ContactUpdateType) RemoveStatus(status ContactStatus) {
+	var StatusContact *ContactAddRemove = &RemoveStatusContact
+	StatusContact.Status = append(StatusContact.Status, status)
+	c.Update.Remove = StatusContact
 }
