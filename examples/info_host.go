@@ -42,5 +42,6 @@ func InfoHost() {
 	fmt.Println(infoData.Address[0].Address)
 	fmt.Println(infoData.Address[0].IP)
 
+	//dnssec
 	client.Conn.Close() //close connection
 }

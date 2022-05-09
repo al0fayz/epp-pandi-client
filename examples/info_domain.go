@@ -7,7 +7,7 @@ import (
 )
 
 func InfoDomain() {
-	domain := "pandi.id"
+	domain := "bejo.my.id"
 	domainFrame := frames.DomainInfoType{}
 	domainFrame.SetDomain(domain)
 	client, err := Login()

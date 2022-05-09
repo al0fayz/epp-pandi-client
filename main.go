@@ -1,7 +1,5 @@
 package main
 
-import "epp-pandi-client/examples"
-
 func main() {
 	// examples.ExampleLogin()
 	/**
@@ -16,7 +14,7 @@ func main() {
 	-> Domain
 	*/
 	// examples.CheckDomain()
-	examples.InfoDomain()
+	// examples.InfoDomain()
 	// examples.CreateDomain()
 	// examples.UpdateDomain()
 	// examples.RenewDomain()

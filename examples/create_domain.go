@@ -32,7 +32,7 @@ func CreateDomain() {
 	domainFrame.AddContact(contactBilling)
 
 	//optional
-	domainFrame.SetAuthInfo("pandi123")
+	domainFrame.SetAuthInfo("pandi123") //this optional
 	domainFrame.AddAddr("sn1.bejak.id")
 	domainFrame.AddAddr("ns2.bejak.id")
 	//add ns with ip address
