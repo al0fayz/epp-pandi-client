@@ -7,9 +7,9 @@ import (
 	"fmt"
 )
 
-func CreateDomain() {
+func CreateDomainDnssec() {
 	domainFrame := frames.DomainCreateType{}
-	domainFrame.SetDomain("bejo1.my.id")
+	domainFrame.SetDomain("bejo2.my.id")
 	period := frames.Period{
 		Value: 1,   //int
 		Unit:  "y", //y (year) or m (month)
@@ -52,7 +52,37 @@ func CreateDomain() {
 		},
 	}
 	domainFrame.AddHostObject(hostObj)
-	//print xml command create domain
+
+	//dnssec
+	dnssec := frames.DNSSECExtensionCreateType{
+		Create: frames.DNSSECOrKeyData{
+			MaxSignatureLife: 604800,
+			DNSSECData: []frames.DNSSEC{
+				{
+					KeyTag:     12345,
+					Algorithm:  3,
+					DigestType: 1,
+					Digest:     "ABACADAFA0",
+					KeyData: &frames.DNSSECKeyData{
+						Flags:     12,
+						Protocol:  3,
+						Algorithm: 1,
+						PublicKey: "Hello",
+					},
+				},
+			},
+			// KeyData: []frames.DNSSECKeyData{
+			// 	{
+			// 		Flags:     1,
+			// 		Protocol:  1,
+			// 		Algorithm: 1,
+			// 		PublicKey: "Hello",
+			// 	},
+			// },
+		},
+	}
+	domainFrame.AddDnssec(dnssec)
+	//print xml command update contact
 	encoded, err := epp.Encode(domainFrame, epp.ClientXMLAttributes())
 	if err != nil {
 		fmt.Println(err)

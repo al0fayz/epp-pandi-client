@@ -6,7 +6,8 @@ see https://datatracker.ietf.org/doc/html/rfc5731#section-3.2.1 for more detail
 */
 // DomainCreateType implements extension for create from domain-1.0.
 type DomainCreateType struct {
-	Create DomainCreate `xml:"urn:ietf:params:xml:ns:domain-1.0 command>create>create"`
+	Create    DomainCreate `xml:"urn:ietf:params:xml:ns:domain-1.0 command>create>create"`
+	Extension *interface{} `xml:"command>extension"` //this extension for dnssec
 }
 
 // DomainCreate represents a domain create command.
@@ -79,3 +80,8 @@ func (d *DomainCreateType) AddHostObject(host HostAttribute) {
 }
 
 //add dnsecc
+func (d *DomainCreateType) AddDnssec(dnssec interface{}) {
+	// var dnSEC DNSSECExtensionCreateType
+
+	d.Extension = &dnssec
+}

@@ -16,6 +16,7 @@ func main() {
 	// examples.CheckDomain()
 	// examples.InfoDomain()
 	// examples.CreateDomain()
+	// examples.CreateDomainDnssec()
 	// examples.UpdateDomain()
 	// examples.RenewDomain()
 	// examples.DeleteDomain()

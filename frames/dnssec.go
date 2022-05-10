@@ -8,7 +8,7 @@ const (
 
 // DNSSECExtensionCreateType implements extension for create from secDNS-1.1
 type DNSSECExtensionCreateType struct {
-	Create DNSSECOrKeyData `xml:"urn:ietf:params:xml:ns:secDNS-1.1 command>extension>create"`
+	Create DNSSECOrKeyData `xml:"urn:ietf:params:xml:ns:secDNS-1.1 create"`
 }
 
 // DNSSECExtensionUpdateType implements extension for Update from secDNS-1.1
