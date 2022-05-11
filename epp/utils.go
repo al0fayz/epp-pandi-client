@@ -162,7 +162,7 @@ func addNameSpaceAlias(document *xmltree.Element, nsAdded bool) *xmltree.Element
 		frames.NameSpaceHost:     "host",
 		frames.NameSpaceContact:  "contact",
 		frames.NameSpaceDNSSEC10: "sed",
-		frames.NameSpaceDNSSEC11: "sec",
+		frames.NameSpaceDNSSEC11: "secDNS",
 		frames.NameSpaceIIS12:    "iis",
 	}
 

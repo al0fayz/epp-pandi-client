@@ -9,7 +9,7 @@ import (
 
 func CreateDomainDnssec() {
 	domainFrame := frames.DomainCreateType{}
-	domainFrame.SetDomain("bejo2.my.id")
+	domainFrame.SetDomain("bejo5.my.id")
 	period := frames.Period{
 		Value: 1,   //int
 		Unit:  "y", //y (year) or m (month)
@@ -59,26 +59,32 @@ func CreateDomainDnssec() {
 			MaxSignatureLife: 604800,
 			DNSSECData: []frames.DNSSEC{
 				{
-					KeyTag:     12345,
-					Algorithm:  3,
+					KeyTag:     45114,
+					Algorithm:  13,
 					DigestType: 1,
-					Digest:     "ABACADAFA0",
-					KeyData: &frames.DNSSECKeyData{
-						Flags:     12,
-						Protocol:  3,
-						Algorithm: 1,
-						PublicKey: "Hello",
-					},
+					Digest:     "4030544B4739A9A090D94FEED88FEE9157CE792A",
+					// KeyData: &frames.DNSSECKeyData{
+					// 	Flags:     257,
+					// 	Protocol:  3,
+					// 	Algorithm: 1,
+					// 	PublicKey: "aGVsbG8=", //base64
+					// },
+				},
+				{
+					KeyTag:     45114,
+					Algorithm:  13,
+					DigestType: 2,
+					Digest:     "4978CA3D92CD618CC8079A6262C0F3C6C27F60F5CDF4DD366F18ABE1D10C010C",
 				},
 			},
-			// KeyData: []frames.DNSSECKeyData{
-			// 	{
-			// 		Flags:     1,
-			// 		Protocol:  1,
-			// 		Algorithm: 1,
-			// 		PublicKey: "Hello",
-			// 	},
-			// },
+			KeyData: []frames.DNSSECKeyData{
+				{
+					Flags:     257,
+					Protocol:  3,
+					Algorithm: 1,
+					PublicKey: "aGVsbG8=", //base64
+				},
+			},
 		},
 	}
 	domainFrame.AddDnssec(dnssec)
