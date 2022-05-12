@@ -23,6 +23,7 @@ func main() {
 	// examples.UpdateDomainDnssec()
 	// examples.RenewDomain()
 	// examples.DeleteDomain()
+	// examples.TransferDomain()
 	/**
 	-> Host
 	*/
@@ -31,4 +32,8 @@ func main() {
 	// examples.CreateHost()
 	// examples.UpdateHost()
 	// examples.DeleteHost()
+
+	//poll
+	// examples.PollRequest()
+	// examples.PollAck()
 }

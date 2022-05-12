@@ -2,7 +2,6 @@ package epp
 
 import (
 	"epp-pandi-client/frames"
-	"fmt"
 )
 
 /**
@@ -59,6 +58,16 @@ func (c *Client) DeleteDomain(domain *frames.DomainDeleteType) ([]byte, error) {
 	if err != nil {
 		return nil, err
 	}
-	fmt.Println(string(encode))
+	// fmt.Println(string(encode))
+	return c.Send(encode)
+}
+
+//transfer
+func (c *Client) TransferDomain(domain *frames.DomainTransferType) ([]byte, error) {
+	encode, err := Encode(domain, ClientXMLAttributes())
+	if err != nil {
+		return nil, err
+	}
+	// fmt.Println(string(encode))
 	return c.Send(encode)
 }

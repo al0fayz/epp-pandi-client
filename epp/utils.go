@@ -127,7 +127,7 @@ func Encode(data interface{}, xmlAttributes []xml.Attr) ([]byte, error) {
 	if err != nil {
 		return nil, err
 	}
-
+	// fmt.Println(string(b))
 	document, err := xmltree.Parse(b)
 	if err != nil {
 		return nil, err

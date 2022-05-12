@@ -98,3 +98,19 @@ type DomainDelete struct {
 func (d *DomainDeleteType) SetDomain(domain string) {
 	d.Delete.Name = domain
 }
+
+/**
+TRANSFER DOMAIN
+*/
+// DomainTransferType implements extension for transfer from domain-1.0.
+type DomainTransferType struct {
+	Transfer DomainTransfer `xml:"urn:ietf:params:xml:ns:domain-1.0 command>transfer>transfer"`
+}
+
+// DomainTransfer represents a domain transfer command.
+type DomainTransfer struct {
+	Operation string    `xml:",any,attr"`
+	Name      string    `xml:"name"`
+	Period    Period    `xml:"period,omitempty"`
+	Authinfo  *AuthInfo `xml:"authInfo,omitempty"`
+}
