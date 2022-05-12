@@ -24,6 +24,7 @@ func main() {
 	// examples.RenewDomain()
 	// examples.DeleteDomain()
 	// examples.TransferDomain()
+	// examples.TransferDomainQuery()
 	/**
 	-> Host
 	*/

@@ -63,7 +63,7 @@ func (c *Client) DeleteDomain(domain *frames.DomainDeleteType) ([]byte, error) {
 }
 
 //transfer
-func (c *Client) TransferDomain(domain *frames.DomainTransferType) ([]byte, error) {
+func (c *Client) TransferDomain(domain *frames.DomainTransferTypeCommand) ([]byte, error) {
 	encode, err := Encode(domain, ClientXMLAttributes())
 	if err != nil {
 		return nil, err
