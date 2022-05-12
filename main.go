@@ -10,6 +10,7 @@ func main() {
 	// examples.CreateContact()
 	// examples.UpdateContact()
 	// examples.DeleteContact()
+	// examples.TransferContact()
 	/**
 	-> Domain
 	*/

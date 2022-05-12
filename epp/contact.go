@@ -48,3 +48,12 @@ func (c *Client) DeleteContact(contact *frames.ContactDeleteType) ([]byte, error
 	}
 	return c.Send(encode)
 }
+
+//transfer
+func (c *Client) TransferContact(contact *frames.ContactTransferType) ([]byte, error) {
+	encode, err := Encode(contact, ClientXMLAttributes())
+	if err != nil {
+		return nil, err
+	}
+	return c.Send(encode)
+}

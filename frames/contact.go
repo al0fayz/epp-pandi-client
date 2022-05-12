@@ -55,3 +55,17 @@ type ContactDelete struct {
 func (c *ContactDeleteType) SetContactId(id string) {
 	c.Delete.Name = id
 }
+
+/**
+Transfer Contact
+*/
+// ContactTransferType represents a contact transfer command.
+type ContactTransferType struct {
+	Transfer ContactTransfer `xml:"urn:ietf:params:xml:ns:contact-1.0 command>transfer>transfer"`
+}
+
+// ContactTransfer represents a contact transfer command.
+type ContactTransfer struct {
+	Name     string   `xml:"id"`
+	AuthInfo AuthInfo `xml:"authInfo,omitempty"`
+}
