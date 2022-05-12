@@ -31,7 +31,8 @@ const (
 
 // DomainUpdateType implements extension for update from domain-1.0.
 type DomainUpdateType struct {
-	Update DomainUpdate `xml:"urn:ietf:params:xml:ns:domain-1.0 command>update>update"`
+	Update    DomainUpdate `xml:"urn:ietf:params:xml:ns:domain-1.0 command>update>update"`
+	Extension *interface{} `xml:"command>extension"` //this extension for dnssec
 }
 
 // DomainUpdate represents a domain update command.
@@ -82,4 +83,7 @@ func (d *DomainUpdateType) RemoveData(data DomainAddRemove) {
 func (d *DomainUpdateType) AddData(data DomainAddRemove) {
 	var domainAddremove *DomainAddRemove = &data
 	d.Update.Add = domainAddremove
+}
+func (d *DomainUpdateType) ChangeDnssec(data interface{}) {
+	d.Extension = &data
 }

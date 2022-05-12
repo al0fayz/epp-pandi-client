@@ -13,7 +13,7 @@ type DNSSECExtensionCreateType struct {
 
 // DNSSECExtensionUpdateType implements extension for Update from secDNS-1.1
 type DNSSECExtensionUpdateType struct {
-	Update DNSSECExtensionUpdate `xml:"urn:ietf:params:xml:ns:secDNS-1.1 command>extension>update"`
+	Update DNSSECExtensionUpdate `xml:"urn:ietf:params:xml:ns:secDNS-1.1 update"`
 }
 
 // DNSSECExtensionInfoDataType represents extension for info data from secDNS-1.1

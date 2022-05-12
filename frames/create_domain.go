@@ -82,6 +82,5 @@ func (d *DomainCreateType) AddHostObject(host HostAttribute) {
 //add dnsecc
 func (d *DomainCreateType) AddDnssec(dnssec interface{}) {
 	// var dnSEC DNSSECExtensionCreateType
-
 	d.Extension = &dnssec
 }
