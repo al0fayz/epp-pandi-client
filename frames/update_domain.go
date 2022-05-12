@@ -66,14 +66,20 @@ func (d *DomainUpdateType) SetDomain(domain string) {
 	d.Update.Name = domain
 }
 
-var AddDomainAddRemove DomainAddRemove
-var RemoveDomainAddRemove DomainAddRemove
-
-//add ns without ip
-func (d *DomainUpdateType) AddAddr(host string) {
-	// var DomainAddRemove *DomainAddRemove = &AddDomainAddRemove
-
+//change data
+func (d *DomainUpdateType) ChangeData(data DomainChange) {
+	var domainChange *DomainChange = &data
+	d.Update.Change = domainChange
 }
-func (d *DomainUpdateType) RemoveAddr() {
 
+//remove data
+func (d *DomainUpdateType) RemoveData(data DomainAddRemove) {
+	var domainAddremove *DomainAddRemove = &data
+	d.Update.Remove = domainAddremove
+}
+
+//add data
+func (d *DomainUpdateType) AddData(data DomainAddRemove) {
+	var domainAddremove *DomainAddRemove = &data
+	d.Update.Add = domainAddremove
 }

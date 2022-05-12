@@ -36,13 +36,12 @@ func (c *Client) CreateDomain(domain *frames.DomainCreateType) ([]byte, error) {
 }
 
 //update
-func UpdateDomain(domain *frames.DomainUpdateType) ([]byte, error) {
+func (c *Client) UpdateDomain(domain *frames.DomainUpdateType) ([]byte, error) {
 	encode, err := Encode(domain, ClientXMLAttributes())
 	if err != nil {
 		return nil, err
 	}
-	fmt.Println(string(encode))
-	return nil, nil
+	return c.Send(encode)
 }
 
 //renew

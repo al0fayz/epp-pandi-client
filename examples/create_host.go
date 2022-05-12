@@ -7,7 +7,7 @@ import (
 )
 
 func CreateHost() {
-	host := "ns4.bejak.id"
+	host := "ns3.bejak.id"
 	hostFrame := frames.HostCreateType{}
 	hostFrame.SetHost(host)
 	addr1 := frames.HostAddress{

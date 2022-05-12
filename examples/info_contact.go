@@ -7,7 +7,7 @@ import (
 )
 
 func InfoContact() {
-	contactId := "hello123"
+	contactId := "hello123s"
 	contact := frames.ContactInfoType{}
 	contact.SetContact(contactId)
 	// contact.SetAuthInfo("password")

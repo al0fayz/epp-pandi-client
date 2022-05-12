@@ -77,18 +77,18 @@ func CreateDomainDnssec() {
 					Digest:     "4978CA3D92CD618CC8079A6262C0F3C6C27F60F5CDF4DD366F18ABE1D10C010C",
 				},
 			},
-			KeyData: []frames.DNSSECKeyData{
-				{
-					Flags:     257,
-					Protocol:  3,
-					Algorithm: 1,
-					PublicKey: "aGVsbG8=", //base64
-				},
-			},
+			// KeyData: []frames.DNSSECKeyData{
+			// 	{
+			// 		Flags:     257,
+			// 		Protocol:  3,
+			// 		Algorithm: 1,
+			// 		PublicKey: "aGVsbG8=", //base64
+			// 	},
+			// },
 		},
 	}
 	domainFrame.AddDnssec(dnssec)
-	//print xml command update contact
+	//print xml command create domain
 	encoded, err := epp.Encode(domainFrame, epp.ClientXMLAttributes())
 	if err != nil {
 		fmt.Println(err)
