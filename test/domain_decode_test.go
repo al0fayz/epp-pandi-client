@@ -2,8 +2,9 @@ package test
 
 import (
 	"encoding/xml"
-	"epp-pandi-client/frames"
 	"testing"
+
+	"github.com/al0fayz/epp-pandi-client/frames"
 
 	"github.com/stretchr/testify/assert"
 )

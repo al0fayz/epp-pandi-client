@@ -2,8 +2,9 @@ package examples
 
 import (
 	"encoding/xml"
-	"epp-pandi-client/frames"
 	"fmt"
+
+	"github.com/al0fayz/epp-pandi-client/frames"
 )
 
 func DeleteContact() {

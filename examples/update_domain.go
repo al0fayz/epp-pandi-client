@@ -2,9 +2,10 @@ package examples
 
 import (
 	"encoding/xml"
-	"epp-pandi-client/epp"
-	"epp-pandi-client/frames"
 	"fmt"
+
+	"github.com/al0fayz/epp-pandi-client/epp"
+	"github.com/al0fayz/epp-pandi-client/frames"
 )
 
 func UpdateDomain() {

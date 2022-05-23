@@ -1,4 +1,4 @@
-module epp-pandi-client
+module github.com/al0fayz/epp-pandi-client
 
 go 1.17
 

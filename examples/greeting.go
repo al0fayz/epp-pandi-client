@@ -2,9 +2,10 @@ package examples
 
 import (
 	"crypto/tls"
-	"epp-pandi-client/epp"
 	"fmt"
 	"net"
+
+	"github.com/al0fayz/epp-pandi-client/epp"
 )
 
 func Greeting() {

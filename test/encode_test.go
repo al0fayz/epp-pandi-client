@@ -1,9 +1,11 @@
 package test
 
 import (
-	"epp-pandi-client/epp"
-	"epp-pandi-client/frames"
 	"testing"
+
+	"github.com/al0fayz/epp-pandi-client/frames"
+
+	"github.com/al0fayz/epp-pandi-client/epp"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

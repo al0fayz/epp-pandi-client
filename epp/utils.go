@@ -3,13 +3,14 @@ package epp
 import (
 	"encoding/binary"
 	"encoding/xml"
-	"epp-pandi-client/frames"
 	"errors"
 	"fmt"
 	"io"
 	"math"
 	"net"
 	"time"
+
+	"github.com/al0fayz/epp-pandi-client/frames"
 
 	"aqwari.net/xml/xmltree"
 )

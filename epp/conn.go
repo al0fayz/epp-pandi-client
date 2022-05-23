@@ -3,10 +3,11 @@ package epp
 import (
 	"context"
 	"crypto/tls"
-	"epp-pandi-client/frames"
 	"fmt"
 	"net"
 	"time"
+
+	"github.com/al0fayz/epp-pandi-client/frames"
 )
 
 type Client struct {

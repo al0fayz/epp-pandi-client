@@ -1,7 +1,7 @@
 package epp
 
 import (
-	"epp-pandi-client/frames"
+	"github.com/al0fayz/epp-pandi-client/frames"
 )
 
 /**

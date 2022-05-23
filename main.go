@@ -1,5 +1,7 @@
 package main
 
+import "github.com/al0fayz/epp-pandi-client/examples"
+
 func main() {
 	// examples.ExampleLogin()
 	/**
@@ -14,7 +16,7 @@ func main() {
 	/**
 	-> Domain
 	*/
-	// examples.CheckDomain()
+	examples.CheckDomain()
 	// examples.InfoDomain()
 	// examples.InfoDomainDnssec()
 	// examples.CreateDomain()
