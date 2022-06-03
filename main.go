@@ -16,7 +16,7 @@ func main() {
 	/**
 	-> Domain
 	*/
-	examples.CheckDomain()
+	// examples.CheckDomain()
 	// examples.InfoDomain()
 	// examples.InfoDomainDnssec()
 	// examples.CreateDomain()
@@ -39,4 +39,7 @@ func main() {
 	//poll
 	// examples.PollRequest()
 	// examples.PollAck()
+
+	//delete domain
+	examples.DeleteDomainByFile()
 }
