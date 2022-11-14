@@ -16,7 +16,7 @@ func (c *Client) CheckDomain(domain *frames.DomainCheckType) ([]byte, error) {
 	return c.Send(encoded)
 }
 
-//info
+// info
 func (c *Client) InfoDomain(domain *frames.DomainInfoType) ([]byte, error) {
 	encode, err := Encode(domain, ClientXMLAttributes())
 	if err != nil {
@@ -25,7 +25,7 @@ func (c *Client) InfoDomain(domain *frames.DomainInfoType) ([]byte, error) {
 	return c.Send(encode)
 }
 
-//create
+// create
 func (c *Client) CreateDomain(domain *frames.DomainCreateType) ([]byte, error) {
 	encode, err := Encode(domain, ClientXMLAttributes())
 	if err != nil {
@@ -34,7 +34,7 @@ func (c *Client) CreateDomain(domain *frames.DomainCreateType) ([]byte, error) {
 	return c.Send(encode)
 }
 
-//update
+// update
 func (c *Client) UpdateDomain(domain *frames.DomainUpdateType) ([]byte, error) {
 	encode, err := Encode(domain, ClientXMLAttributes())
 	if err != nil {
@@ -43,7 +43,7 @@ func (c *Client) UpdateDomain(domain *frames.DomainUpdateType) ([]byte, error) {
 	return c.Send(encode)
 }
 
-//renew
+// renew
 func (c *Client) RenewDomain(domain *frames.DomainRenewType) ([]byte, error) {
 	encode, err := Encode(domain, ClientXMLAttributes())
 	if err != nil {
@@ -52,7 +52,7 @@ func (c *Client) RenewDomain(domain *frames.DomainRenewType) ([]byte, error) {
 	return c.Send(encode)
 }
 
-//delete
+// delete
 func (c *Client) DeleteDomain(domain *frames.DomainDeleteType) ([]byte, error) {
 	encode, err := Encode(domain, ClientXMLAttributes())
 	if err != nil {
@@ -62,8 +62,18 @@ func (c *Client) DeleteDomain(domain *frames.DomainDeleteType) ([]byte, error) {
 	return c.Send(encode)
 }
 
-//transfer
+// transfer
 func (c *Client) TransferDomain(domain *frames.DomainTransferTypeCommand) ([]byte, error) {
+	encode, err := Encode(domain, ClientXMLAttributes())
+	if err != nil {
+		return nil, err
+	}
+	// fmt.Println(string(encode))
+	return c.Send(encode)
+}
+
+// restore
+func (c *Client) RestoreDomain(domain *frames.DomainRestoreType) ([]byte, error) {
 	encode, err := Encode(domain, ClientXMLAttributes())
 	if err != nil {
 		return nil, err

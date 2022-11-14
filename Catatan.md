@@ -1,2 +1,4 @@
-yang belum :
-- domain transfer
+- Restore Domain
+    - restore domain di lakukan ketika domain status redemtionPeriod
+    - atau pendingDelete
+    - artinya jika domain sudah di delete atau sudah tidak bisa di whois maka tidak bisa di restore

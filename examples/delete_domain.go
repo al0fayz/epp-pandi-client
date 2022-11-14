@@ -9,7 +9,7 @@ import (
 
 func DeleteDomain() {
 	domainFrame := frames.DomainDeleteType{}
-	domainFrame.SetDomain("bejo.my.id")
+	domainFrame.SetDomain("bejo1.my.id")
 	//login
 	client, err := Login()
 	if err != nil {

@@ -165,6 +165,7 @@ func addNameSpaceAlias(document *xmltree.Element, nsAdded bool) *xmltree.Element
 		frames.NameSpaceDNSSEC10: "sed",
 		frames.NameSpaceDNSSEC11: "secDNS",
 		frames.NameSpaceIIS12:    "iis",
+		frames.NameSpaceRGP10:    "rgp",
 	}
 
 	if document.Name.Space != "" {

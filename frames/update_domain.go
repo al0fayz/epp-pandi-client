@@ -67,19 +67,19 @@ func (d *DomainUpdateType) SetDomain(domain string) {
 	d.Update.Name = domain
 }
 
-//change data
+// change data
 func (d *DomainUpdateType) ChangeData(data DomainChange) {
 	var domainChange *DomainChange = &data
 	d.Update.Change = domainChange
 }
 
-//remove data
+// remove data
 func (d *DomainUpdateType) RemoveData(data DomainAddRemove) {
 	var domainAddremove *DomainAddRemove = &data
 	d.Update.Remove = domainAddremove
 }
 
-//add data
+// add data
 func (d *DomainUpdateType) AddData(data DomainAddRemove) {
 	var domainAddremove *DomainAddRemove = &data
 	d.Update.Add = domainAddremove

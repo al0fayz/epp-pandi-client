@@ -1,8 +1,8 @@
 package main
 
-import "github.com/al0fayz/epp-pandi-client/examples"
-
 func main() {
+	// split := strings.Split("domain.my.id", ".")
+	// fmt.Println(split)
 	// examples.ExampleLogin()
 	/**
 	-> Contact
@@ -27,6 +27,7 @@ func main() {
 	// examples.DeleteDomain()
 	// examples.TransferDomain()
 	// examples.TransferDomainQuery()
+	// examples.RestoreDomain()
 	/**
 	-> Host
 	*/
@@ -41,5 +42,5 @@ func main() {
 	// examples.PollAck()
 
 	//delete domain
-	examples.DeleteDomainByFile()
+	// examples.DeleteDomainByFile()
 }
