@@ -48,30 +48,37 @@ const (
 	HostStatusServerUpdateProhibited HostStatusType = "serverUpdateProhibited"
 )
 
-//make global variabel for make blue print of HostAddRemove
+// make global variabel for make blue print of HostAddRemove
 var AddHostAddRemove HostAddRemove    //for add
 var RemoveHostAddRemove HostAddRemove //for remove
 
 func (h *HostUpdateType) SetHost(host string) {
 	h.Update.Name = host
 }
+
 func (h *HostUpdateType) AddAddr(host HostAddress) {
-	//copy blue print AddHostAddRemove
-	var HostAddRemove *HostAddRemove = &AddHostAddRemove
-	HostAddRemove.Address = append(HostAddRemove.Address, host)
-	h.Update.Add = HostAddRemove
+	// Create a new HostAddRemove struct
+	addHostAddRemove := &HostAddRemove{
+		Address: []HostAddress{host},
+	}
+	// Assign the new HostAddRemove struct to the Remove field of the Update field
+	h.Update.Add = addHostAddRemove
 }
+
 func (h *HostUpdateType) RemoveAddr(host HostAddress) {
-	//copy blue print RemoveHostAddRemove
-	var HostAddRemove *HostAddRemove = &RemoveHostAddRemove
-	HostAddRemove.Address = append(HostAddRemove.Address, host)
-	h.Update.Remove = HostAddRemove
+	// Create a new HostAddRemove struct
+	removeHostAddRemove := &HostAddRemove{
+		Address: []HostAddress{host},
+	}
+
+	// Assign the new HostAddRemove struct to the Remove field of the Update field
+	h.Update.Remove = removeHostAddRemove
 }
 func (h *HostUpdateType) ChangeHost(host string) {
 	h.Update.Change = host
 }
 
-//add status host
+// add status host
 func (h *HostUpdateType) AddStatus(status HostStatus) {
 	//copy blue print AddHostAddRemove
 	var HostAddRemove *HostAddRemove = &AddHostAddRemove
@@ -79,7 +86,7 @@ func (h *HostUpdateType) AddStatus(status HostStatus) {
 	h.Update.Add = HostAddRemove
 }
 
-//remove status host
+// remove status host
 func (h *HostUpdateType) RemoveStatus(status HostStatus) {
 	//copy blue print RemoveHostAddRemove
 	var HostAddRemove *HostAddRemove = &RemoveHostAddRemove
